@@ -7,4 +7,4 @@ https://leetcode.com/study-plan/algorithm/?progress=xg2kaq37
 
 They are all solved using Javascript, and aiming to satisfy the runtime complexity. 
 
-Each folder contains one problem, with the premis commented at the top of the .js file.
+Each folder contains one problem, with the objective commented at the top of the .js file.
