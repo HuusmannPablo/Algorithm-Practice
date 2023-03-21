@@ -18,13 +18,8 @@ const twoSum = function(numbers, target) {
         if(!numbers.includes(difference)){
             continue
         }
-        if(difference == 0){
-            const index1 = numbers.indexOf(numbers[i]) + 1;
-            const index2 = numbers.lastIndexOf(difference) + 1;
-            return [index1, index2];
-        }
         const index1 = numbers.indexOf(numbers[i]) + 1;
-        const index2 = numbers.indexOf(difference) + 1;
+        const index2 = numbers.lastIndexOf(difference) + 1;
         return [index1, index2];
     }  
 };
