@@ -25,12 +25,21 @@
 // middleNode([1,2,3,4,5,6]);
 
 // SOLUTION 2: (for Single Linked Lists)
-const middleNode = function(head) {
-    let nodeCount = 0;
-    while (head.next !== null) {
-        if() {
-            
-        }
-        nodeCount
+let middleNode = function(head) {
+    let length = 0;
+    let node = head;
+    // I calculate the length of the inked list
+    while (node !== null) {
+        length += 1;
+        node = node.next;
     }
+    // I get the middle point
+    let middleNode = Math.floor(length/2);
+    // I need to redefine node as my original linked list 
+    node = head;
+    // I link all the nodes
+    for (let i=0; i < middleNode; i++) {
+        node = node.next;
+    }
+    return node;
 };
