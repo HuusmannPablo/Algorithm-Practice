@@ -14,10 +14,13 @@
 const checkInclusion = function(s1, s2) {
     // Transforming string into array
     let arrayOfStrings = s2.split(" ");
+
     // Reversing the order of the array
     let reversedArray = arrayOfStrings.map(word => word.split("").reverse().join(""));
+
     // Join the array to form a string (now reversed)
     let reverseds2 = reversedArray.join(" ");
+
     // Checking if the reversed string includes s1
     if(reverseds2.includes(s1)) {
         return true
@@ -25,3 +28,6 @@ const checkInclusion = function(s1, s2) {
     return false
 
 };
+
+checkInclusion('ab','eidbaooo'); // Should return true
+checkInclusion('ab','eidboaooo'); // Should return false
