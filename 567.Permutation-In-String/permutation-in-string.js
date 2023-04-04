@@ -22,7 +22,7 @@ const checkInclusion = function(s1, s2) {
     let reverseds2 = reversedArray.join(" ");
 
     // Checking if the reversed string includes s1
-    if(reverseds2.includes(s1)) {
+    if(reverseds2.includes(s1) || s2.includes(s1)) {
         return true
     }
     return false
