@@ -38,7 +38,7 @@ const maxAreaOfIsland = function(grid) {
         // If the position is out bounderies, or if its not 1(water or visited), then keep going 
         if (row >= grid.length || row < 0 || column >= grid[0].length || column < 0 || grid[row][column] !== 1) return 0;
 
-        // I set the position as visited by assigning a value of 2 (any value different from 1 or 0 would work)
+        // I set the position as visited by assigning a value of 2 (any value different from 1 would work)
         grid[row][column] = 2;
 
         // Now I return the value of the cell I'm at, plus the 4 directions that have earth.
