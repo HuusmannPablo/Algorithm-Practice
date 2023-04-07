@@ -16,38 +16,35 @@
 
 const maxAreaOfIsland = function(grid) {
     // Initializing both variables, the counter and the max size yet
-    let biggestIslandYet = 0;
-    let islandSizeCounter = 0;
+    let biggestIsland = 0;
 
     // looping through every row (y axis)
     for (let i = 0; i < grid.length; i++) {
-        // Resetting the counter
-        islandSizeCounter = 0;
 
         // Looping through every column bit in the i row
         for (let j = 0; j < grid[0].length; j++) {
             
-            // Now I set up the function to check the 4 directions
-            function callDFS(map, row, column) {
-                // If the position is out bounderies, or if it 0(water), then keep going 
-                if (row >= map.length || row < 0 || column >= map[0].length || column < 0 || map[row][column] === 0) return;
-
-                // as the coordenate is earth, I add 1 to the counter
-                islandSizeCounter += 1;
-
-                // Now I check the 4 directions for more earth.
-                callDFS(map, row - 1, column);  // Up
-                callDFS(map, row + 1, column);  // Down
-                callDFS(map, row, column + 1);  // Right 
-                callDFS(map, row, column - 1);  // Left
-
-                // I check if the island I have found is the biggest one yet
-                if (biggestIslandYet > islandSizeCounter) {
-                    biggestIslandYet = islandSizeCounter
-                    return biggestIslandYet
-                }
-            }
-            return callDFS(grid, i, j);
+            // I calculate the size of the island I found by running the function
+            let areaOfIsland = findIslandArea(grid, i, j); 
+            // If the island's area is bigger than the biggest, update the value
+            if (areaOfIsland > biggestIsland) biggestIsland = areaOfIsland;
         }
+    }
+
+    // Now I set up the function to check the 4 directions
+    function findIslandArea(grid, row, column) {
+
+        // If the position is out bounderies, or if its not 1(water or visited), then keep going 
+        if (row >= grid.length || row < 0 || column >= grid[0].length || column < 0 || grid[row][column] !== 1) return 0;
+
+        // I set the position as visited by assigning a value of 2 (any value different from 1 or 0 would work)
+        grid[row][column] = 2;
+
+        // Now I return the value of the cell I'm at, plus the 4 directions that have earth.
+        return 1 
+            + findIslandArea(grid, row + 1, column)  // Up
+            + findIslandArea(grid, row - 1, column)  // Down
+            + findIslandArea(grid, row, column + 1)  // Right 
+            + findIslandArea(grid, row, column - 1);  // Left
     }
 };
