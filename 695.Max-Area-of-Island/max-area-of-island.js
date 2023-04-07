@@ -30,6 +30,7 @@ const maxAreaOfIsland = function(grid) {
             if (areaOfIsland > biggestIsland) biggestIsland = areaOfIsland;
         }
     }
+    return biggestIsland;
 
     // Now I set up the function to check the 4 directions
     function findIslandArea(grid, row, column) {
