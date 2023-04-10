@@ -16,6 +16,34 @@
 // Input: root1 = [1], root2 = [1,2]
 // Output: [2,2]
 
+
+// Definition for a binary tree node.
+// function TreeNode(val, left, right) {
+//     this.val = (val===undefined ? 0 : val)
+//     this.left = (left===undefined ? null : left)
+//     this.right = (right===undefined ? null : right)
+//  }
+
 const mergeTrees = function(root1, root2) {
-    
+    function depthFirstSearch(r1, r2){
+
+        // If none of the trees have a node, return null
+        if (!r1 && !r2) return null;
+
+        // If root1 value is null, return root2 value
+        if (!r1) return r2;
+        
+        // If root2 value is null, return root1 value\
+        if (!r2) return r1;
+
+        // If root1 and 2 have a value, I need to add them and return the value
+        r1.val += r2.val;
+
+        // And now I check the left and right of the node for more values
+        r1.left = depthFirstSearch(r1.left, r2.left);
+        r1.right = depthFirstSearch(r1.right, r2.right);
+
+        return r1;
+    }
+    return depthFirstSearch(root1, root2);
 };
