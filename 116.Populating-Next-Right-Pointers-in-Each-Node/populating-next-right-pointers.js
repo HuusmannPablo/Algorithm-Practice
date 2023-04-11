@@ -51,14 +51,15 @@ const connect = function(root) {
     // If there is no left children of the node, return
     if (!root.left) return root;
 
-    // I connect the left children with the right children 
+    // What follows the left children is the right children 
     root.left.next = root.right;
 
-    // If the next of the right children is equivalent with the roots next (null #)
+    // If the next of the right children is the roots next
     if (root.right.next = root.next) {
-        // then after the null of the right children, it comes the next root
+        // then after the right children, it will come the left children of the next pointer
         root.right.next = root.next.left
     } else {
+        // Otherwise, we are at end of the current level, and we return null
         root.right.next = null
     }
 
