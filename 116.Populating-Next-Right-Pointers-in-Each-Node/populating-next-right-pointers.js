@@ -30,12 +30,41 @@
 
 // Input: root = [1,2,3,4,5,6,7]
 // Output: [1,#,2,3,#,4,5,6,7,#]
-// Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+// Explanation: Given the above perfect binary tree, your function should populate each next pointer to point to its next right node, 
+// just like in the modified tree. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
 
 // Example 2:
 // Input: root = []
 // Output: []
 
+// To understand the structure of the tree and its properties, for the example 1:
+// root = 1
+// root.left = 2        left children
+// root.right = 3       right children
+// root.next = null     horizontally to the right, hence out of the tree in this case
+
 const connect = function(root) {
-    
+
+    // If there is no root, return
+    if (!root) return root;
+
+    // If there is no left children of the node, return
+    if (!root.left) return root;
+
+    // I connect the left children with the right children 
+    root.left.next = root.right;
+
+    // If the next of the right children is equivalent with the roots next (null #)
+    if (root.right.next = root.next) {
+        // then after the null of the right children, it comes the next root
+        root.right.next = root.next.left
+    } else {
+        root.right.next = null
+    }
+
+    // Check the children
+    connect(root.left);
+    connect(root.right);
+
+    return root;
 };
