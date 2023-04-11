@@ -54,8 +54,8 @@ const connect = function(root) {
     // What follows the left children is the right children 
     root.left.next = root.right;
 
-    // If the next of the right children is the roots next
-    if (root.right.next = root.next) {
+    // If the next node is not null (not the edge of tree)
+    if (root.next != null) {
         // then after the right children, it will come the left children of the next pointer
         root.right.next = root.next.left
     } else {
