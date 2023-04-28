@@ -46,41 +46,39 @@ const orangesRotting = function(grid) {
     while (queue.length && freshOranges) {
     
         // Each queue entry has a row, column and number of minutes taken for infection to reach.
-        const [currentRow, curC, mins] = queue.shift();
+        const [currentRow, currentColumn, minutesToInfect] = queue.shift();
         
-        //If orange is still fresh, we mark it as rotten, decrement our fresh oranges
-        //count and set time to = mins.  Since we BFSing, the time it takes to infect
-        //the last orange will be the time to infect all.  Once all oranges have
-        //been infected, our orange count will = 0 and our condition in while loop
-        //will stop the loop.  Time can then be returned.
-        if (grid[currentRow][curC] === 1) {
-        grid[currentRow][curC] = 2;
-        freshOranges--;
-        time = mins;
+        // If the orange is fresh, we mark it as rotten, decrement our fresh oranges count
+        // and set time to = minutesToInfect. Since we are BFSing, the time it takes to infect
+        // the last orange will be the time to infect all. Once all oranges have been infected, 
+        // our orange count will be 0 and our condition in the while loop will stop the loop.  
+        // Time can then be returned.
+        if (grid[currentRow][currentColumn] === 1) {
+            grid[currentRow][currentColumn] = 2;
+            freshOranges--;
+            time = minutesToInfect;
         }
 
-        //Here's where our dir array above comes in handy.  We destructure
-        //each entry and add it to our current to get neighbor coords below.
-        for (let [addR, addC] of directions) {
+        // We destructure each entry and add it to our current to get neighbor coords.
+        for (let [addRow, addColumn] of directions) {
         
-        //Here we obtain our new or neighbor coordinates by adding currentRow
-        //and addRow of dir.  Same for col.
-        const [newR, newC] = [currentRow + addR, curC + addC];
-        
-        //Here we check to make sure new coordinates lie within the grid.
-        if (newR < 0 || newR > endOfRow || newC < 0 || newC > endOfColumn) continue;
-        
-        //If neighbor coord is valid, and there is a fresh orange at those coordinates
-        //we push coordinates to our BFS to be infected next.  We also increment the
-        //mins count to track time taken to spread to that orange.
-        if (grid[newR][newC] === 1) {
-            queue.push([newR, newC, mins + 1])
-        }
+            // We obtain our new or neighbor coordinates by adding currentRow and addRow of directions.  
+            // Same for the columns.
+            const [newRow, newColumn] = [currentRow + addRow, currentColumn + addColumn];
+            
+            // We check to make sure new coordinates lie within the grid.
+            if (newRow < 0 || newRow > endOfRow || newColumn < 0 || newColumn > endOfColumn) continue;
+            
+            // If neighbor coord is valid, and there is a fresh orange at those coordinates
+            // we push coordinates to our BFS to be infected next, and increment the
+            // minutesToInfect count to track time taken to spread to that orange.
+            if (grid[newRow][newColumn] === 1) {
+                queue.push([newRow, newColumn, minutesToInfect + 1])
+            }
         }
     }
     
-    //If we still have uninfected oranges, we return -1 because it won't spread
-    //to all.  Otherwise, we simply return the time from initial infected to last
-    //infected orange.
+    // If we still have uninfected oranges, we return -1 because it won't spread to all.  
+    // Otherwise, we simply return the time from initial infected to last infected orange.
     return freshOranges ? -1 : time;
 };
