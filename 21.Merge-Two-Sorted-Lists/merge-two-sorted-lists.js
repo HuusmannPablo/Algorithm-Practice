@@ -36,5 +36,16 @@ const mergeTwoLists = function(list1, list2) {
         newList = newList.next;
     }
 
-    
+    // If list1 is empty, return list 2
+    if(!list1) {
+        return list2
+    }
+
+    // If list 2 is empty, return list 1
+    if(!list2) {
+        return list1
+    }
+
+    return head.next
+
 };
