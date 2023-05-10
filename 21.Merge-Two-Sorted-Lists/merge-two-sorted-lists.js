@@ -21,21 +21,27 @@ const mergeTwoLists = function(list1, list2) {
     // I initialize a new list, and the head of that new list.
     // I will put all the values in this new list, in order
     let newList = new ListNode();
-    let head = newList;
+    let last = newList;
 
     // If I'm given two lists, then I'll check which value is lower (list 1 or 2) and insert that into the new list
     // then move to the next node on that list, and compare again. 
     while(list1 && list2) {
         if(list1.val <= list2.val) {
-            newList.next = new ListNode(list1.val);
-            list1 = list1.next;
+            // newList.next = new ListNode(list1.val);
+            // list1 = list1.next;
+            last.next = list1
+            list1 = list1.next
         } else {
-            newList.next = new ListNode(list2.val);
-            list2 = list2.next;
+            // newList.next = new ListNode(list2.val);
+            // list2 = list2.next;
+            last.next = list2
+            list2 = list2.next
         }
-        newList = newList.next;
+        // newList = newList.next;
+        last = last.next
     }
 
+    // Edge cases when either of the lists are not given or are empty:
     // If list1 is empty, return list 2
     if(!list1) {
         return list2
@@ -45,7 +51,7 @@ const mergeTwoLists = function(list1, list2) {
     if(!list2) {
         return list1
     }
-
-    return head.next
+    last.next = list1 || list2;
+    return newList.next
 
 };
