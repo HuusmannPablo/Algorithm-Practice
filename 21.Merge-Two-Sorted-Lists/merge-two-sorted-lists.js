@@ -23,24 +23,6 @@ const mergeTwoLists = function(list1, list2) {
     let newList = new ListNode();
     let last = newList;
 
-    // If I'm given two lists, then I'll check which value is lower (list 1 or 2) and insert that into the new list
-    // then move to the next node on that list, and compare again. 
-    while(list1 && list2) {
-        if(list1.val <= list2.val) {
-            // newList.next = new ListNode(list1.val);
-            // list1 = list1.next;
-            last.next = list1
-            list1 = list1.next
-        } else {
-            // newList.next = new ListNode(list2.val);
-            // list2 = list2.next;
-            last.next = list2
-            list2 = list2.next
-        }
-        // newList = newList.next;
-        last = last.next
-    }
-
     // Edge cases when either of the lists are not given or are empty:
     // If list1 is empty, return list 2
     if(!list1) {
@@ -51,7 +33,27 @@ const mergeTwoLists = function(list1, list2) {
     if(!list2) {
         return list1
     }
-    last.next = list1 || list2;
-    return newList.next
 
+    // If I'm given two lists, then I'll check which value is lower (list 1 or 2) and insert that into the new list
+    // then move to the next node on that list, and compare again. 
+    while(list1 && list2) {
+        if(list1.val > list2.val) {
+            // newList.next = new ListNode(list1.val);
+            // list1 = list1.next;
+            last.next = list2
+            list2 = list2.next
+        } else {
+            // newList.next = new ListNode(list2.val);
+            // list2 = list2.next;
+            last.next = list1
+            list1 = list1.next
+        }
+        // newList = newList.next;
+        last = last.next
+    }
+
+    // Add the reminder of the last list
+    last.next = list1 || list2;
+
+    return newList.next
 };
