@@ -13,8 +13,19 @@
 // Output: [[1]]
 // Explanation: There is 1 choose 1 = 1 total combination.
 
-// n gives you the target number, and k provides the amount of elements in the array
+// n gives you the target number, and 
+// k provides the amount of elements in the array
 
 const combine = function(n, k) {
+    // Edge cases: 1) n=0 or 2) k=0
+    
+    // Initialize an empty array to hold all the posibilities "outputArray"
+
+    // create an array with as many elements as k, and formed by consescutive numbers starting with 1
+        // k = 3 => [1,2,3]
+        // for (i = 0; i < n; i++) {
+        //     array.push(i+1);
+        // }
+    
     
 };
