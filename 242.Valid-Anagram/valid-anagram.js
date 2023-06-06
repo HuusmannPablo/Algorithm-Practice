@@ -12,7 +12,31 @@
 // Output: false
 
 const isAnagram = function(s, t) {
-    
+
+    // Transform string into array
+    let sArray = s.split('');
+    let tArray = t.split('');
+    console.log(sArray, tArray);
+
+    // Sort the array alphabeticaly
+    sArray.sort();
+    tArray.sort();
+    console.log(sArray, tArray);
+
+    // Transform to string
+    let sString = sArray.join();
+    let tString = tArray.join();
+
+    // Compare strings
+    if(sString === tString) return true
+    return false
+
+};
+
+// REFACTORED SOLUTION:
+
+const isAnagram2 = function(s, t) {
+    return s.split('').sort().join('') === t.split('').sort().join(''); 
 };
 
 
