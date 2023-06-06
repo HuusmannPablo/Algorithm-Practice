@@ -15,4 +15,15 @@
 
 const containsDuplicate = function(nums) {
     
+    // Not the greatest solution, but it works
+    // We sort the array first
+    nums.sort((a,b) => a-b);
+
+    // Then we check that the value is equal to the next one or not
+    for(let i = 0; i <= nums.length-1; i++){
+        if(nums[i] === nums[i+1]){
+            return true
+        }
+    }
+    return false
 };
