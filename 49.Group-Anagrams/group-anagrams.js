@@ -17,5 +17,21 @@
 // Output: [["a"]]
 
 const groupAnagrams = function(strs) {
+
+    //edge case:
+    //if length of array is 1, return array
+
+    // map the array (for loop)
+    // take first string and store it in a new array
+    // take the second string and compare with first one
+    // split.sort.join === 
+        // if it is an anagram store it with it
+        // If its not an anagram store it in a second array
+
+    // return new array
+    let sortedAnagrams = [];
+    if(strs.length == 1) return strs;
+
     
+
 };
