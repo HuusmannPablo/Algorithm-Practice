@@ -32,6 +32,11 @@ const groupAnagrams = function(strs) {
     let sortedAnagrams = [];
     if(strs.length == 1) return strs;
 
-    
+    for(let i = 0; i < strs.length; i++) {
+        let sortedString = strs[i].split('').sort().join('')
+
+        // add the word to the final array (?)
+        sortedAnagrams[x].pop(strs[i]);
+    }
 
 };
