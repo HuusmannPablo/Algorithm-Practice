@@ -18,25 +18,30 @@
 
 const groupAnagrams = function(strs) {
 
-    //edge case:
-    //if length of array is 1, return array
-
-    // map the array (for loop)
-    // take first string and store it in a new array
-    // take the second string and compare with first one
-    // split.sort.join === 
-        // if it is an anagram store it with it
-        // If its not an anagram store it in a second array
-
-    // return new array
+    // Create an object to store the sorted strings and group the answers together
+    // The Key will be a sorted string
+    // The value will be an array of strings
+    // i.e. {'aet': ['tea', 'ate', 'eat']}
     const sortedAnagrams = {};
+
+    // Loop through the entire array of strings
     for(let i = 0; i < strs.length; i++) {
+
+        // Sort the string by spliting into letters, sorting them alphabetically, and joining them together into a string again
         const sortedString = strs[i].split('').sort().join('');
+
+        // If there is a key in the object equal to the sorted string
         if(sortedAnagrams[sortedString]) {
+
+            // Then add that string to the value of that key, pushing it into the array
             sortedAnagrams[sortedString].push(strs[i]);
         } else {
+
+            // Otherwise, create a new Key with the sorted string, and add the string as the Value 
             sortedAnagrams[sortedString] = [strs[i]];
         }
     }
+
+    // I return only the values of the object, so they will be an array of arrays
     return Object.values(sortedAnagrams);    
 };
