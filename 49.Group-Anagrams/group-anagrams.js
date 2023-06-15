@@ -29,21 +29,14 @@ const groupAnagrams = function(strs) {
         // If its not an anagram store it in a second array
 
     // return new array
-    let sortedAnagrams = [];
-    if(strs.length == 1) return strs;
-
+    const sortedAnagrams = {};
     for(let i = 0; i < strs.length; i++) {
-        let sortedString = strs[i].split('').sort().join('');
-
-        for(let j = 0; j < sortedAnagrams.length; j++) {
-            if(sortedString === sortedAnagrams[j]) {
-                sortedAnagrams[j].pop(strs[i]);
-                return
-            }
-            
+        const sortedString = strs[i].split('').sort().join('');
+        if(sortedAnagrams[sortedString]) {
+            sortedAnagrams[sortedString].push(strs[i]);
+        } else {
+            sortedAnagrams[sortedString] = [strs[i]];
         }
-        // add the word to the final array (?)
-        sortedAnagrams[x].pop(strs[i]);
     }
-
+    return Object.values(sortedAnagrams);    
 };
