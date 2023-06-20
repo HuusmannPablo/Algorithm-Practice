@@ -25,12 +25,19 @@ const topKFrequent = function(nums, k) {
     
     // Option 1: Return the k most frequent numbers:
     
+    // I need to assemble a new array with th enumbers
+    const topKFrequentArray = [];
+    // Loop from i=0 to k
+    // push(array[i]) to topKFrequentArray
+
+    // return topKFrequentArray
 
 
 
     // Option 2: re-convert to object, but sorted
     // then Object.fromEntries(sortedObject);
-    // this returns an object of key:values with everything sorted. 
+    // this returns an object of key:values with everything sorted.
+    // {number:freq, number2:freq2, ...} 
     // The numbers with higher freq will be the firstones
 
 
