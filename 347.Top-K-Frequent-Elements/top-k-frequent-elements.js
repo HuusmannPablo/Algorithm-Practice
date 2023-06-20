@@ -18,11 +18,14 @@ const topKFrequent = function(nums, k) {
         if(numbersFrequencies[nums[i]]) {
             numbersFrequencies[nums[i]].value =+ 1;
         } else {
-            numbersFrequencies[nums[i]] = nums[i]; // double check the type of the key: value
+            numbersFrequencies[nums[i]] = [nums[i]]; // double check the type of the key: value
+            console.log(nums[i]);
         }
     }
     // if the number exists in the object, add 1 to the count
     // else, create a new key with the value and put freq = 1
+
+    console.log(numbersFrequencies);
 
     const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => x[1] + y[1]);
     // Double check sorting function
@@ -36,10 +39,14 @@ const topKFrequent = function(nums, k) {
     // I need to assemble a new array with th enumbers
     const topKFrequentArray = [];
     
-    
+    for(let j = 0; j < k; j++) {
+        topKFrequentArray.push(sortedNumberFerquencies[j][1])
+    }
     // Loop from i=0 to k
     // push(array[i]) to topKFrequentArray
 
+
+    return topKFrequentArray
     // return topKFrequentArray
 
 
@@ -55,4 +62,6 @@ const topKFrequent = function(nums, k) {
 
 };
 
-
+const nums = [1,1,1,2,2,3];
+const k = 2;
+topKFrequent(nums, k);
