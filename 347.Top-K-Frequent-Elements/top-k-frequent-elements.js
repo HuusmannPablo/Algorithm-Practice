@@ -14,9 +14,9 @@ const topKFrequent = function(nums, k) {
     const numbersFrequencies = {};
 
     // Loop through the nums array 
-    for(let i = 0; i < nums.lenght; i++) {
+    for(let i = 0; i < nums.length; i++) {
         if(numbersFrequencies[nums[i]]) {
-            numbersFrequencies[nums[i]].value =+ 1;
+            numbersFrequencies[nums[i]].value += 1;
         } else {
             numbersFrequencies[nums[i]] = [nums[i]]; // double check the type of the key: value
             console.log(nums[i]);
@@ -27,7 +27,7 @@ const topKFrequent = function(nums, k) {
 
     console.log(numbersFrequencies);
 
-    const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => x[1] + y[1]);
+    const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => x[1] - y[1]);
     // Double check sorting function
     // after that, sort the key:values from largest to smallest
     // Object.entries(obj).sort(function large to small);
@@ -40,7 +40,7 @@ const topKFrequent = function(nums, k) {
     const topKFrequentArray = [];
     
     for(let j = 0; j < k; j++) {
-        topKFrequentArray.push(sortedNumberFerquencies[j][1])
+        topKFrequentArray.push(parseInt(sortedNumberFerquencies[j][0], 10))
     }
     // Loop from i=0 to k
     // push(array[i]) to topKFrequentArray
@@ -64,4 +64,5 @@ const topKFrequent = function(nums, k) {
 
 const nums = [1,1,1,2,2,3];
 const k = 2;
-topKFrequent(nums, k);
+const result = topKFrequent(nums, k);
+console.log(result);
