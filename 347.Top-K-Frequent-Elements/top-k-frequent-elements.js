@@ -18,17 +18,19 @@ const topKFrequent = function(nums, k) {
 
         // If the number exists in the object, add 1 to the count of its frequency
         if(numbersFrequencies[nums[i]]) {
-            numbersFrequencies[nums[i]].value += 1;
+            numbersFrequencies[nums[i]] += 1;
 
         // Otherwise create a new key with the value and put freq = 1
         } else {
-            numbersFrequencies[nums[i]] = [nums[i]];
+            numbersFrequencies[nums[i]] = 1;
         }
     }
+    console.log(numbersFrequencies);
 
     // Sort the key:values from largest to smallest by its value(frequency)
-    const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => x[1] - y[1]);    
-    
+    const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => y[1] - x[1]);    
+    console.log(sortedNumberFerquencies);
+
     // Create a new array that will hold the most used numbers
     const topKFrequentArray = [];
     
@@ -41,7 +43,7 @@ const topKFrequent = function(nums, k) {
     return topKFrequentArray
 };
 
-const nums = [1,1,1,2,2,3];
-const k = 2;
+const nums = [3,0,1,0];
+const k = 1;
 const result = topKFrequent(nums, k);
 console.log(result);
