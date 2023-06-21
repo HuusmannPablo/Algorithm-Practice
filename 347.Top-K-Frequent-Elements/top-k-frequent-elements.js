@@ -15,51 +15,30 @@ const topKFrequent = function(nums, k) {
 
     // Loop through the nums array 
     for(let i = 0; i < nums.length; i++) {
+
+        // If the number exists in the object, add 1 to the count of its frequency
         if(numbersFrequencies[nums[i]]) {
             numbersFrequencies[nums[i]].value += 1;
+
+        // Otherwise create a new key with the value and put freq = 1
         } else {
-            numbersFrequencies[nums[i]] = [nums[i]]; // double check the type of the key: value
-            console.log(nums[i]);
+            numbersFrequencies[nums[i]] = [nums[i]];
         }
     }
-    // if the number exists in the object, add 1 to the count
-    // else, create a new key with the value and put freq = 1
 
-    console.log(numbersFrequencies);
-
-    const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => x[1] - y[1]);
-    // Double check sorting function
-    // after that, sort the key:values from largest to smallest
-    // Object.entries(obj).sort(function large to small);
-    // I get an array of arrays with [[number, freq], [number2, freq2]...]
+    // Sort the key:values from largest to smallest by its value(frequency)
+    const sortedNumberFerquencies = Object.entries(numbersFrequencies).sort((x, y) => x[1] - y[1]);    
     
-
-    // Option 1: Return the k most frequent numbers:
-    
-    // I need to assemble a new array with th enumbers
+    // Create a new array that will hold the most used numbers
     const topKFrequentArray = [];
     
+    // Loop from 0 to k and push every value into the new array as an integer
     for(let j = 0; j < k; j++) {
         topKFrequentArray.push(parseInt(sortedNumberFerquencies[j][0], 10))
     }
-    // Loop from i=0 to k
-    // push(array[i]) to topKFrequentArray
 
-
+    // return the array with the most frequent numbers
     return topKFrequentArray
-    // return topKFrequentArray
-
-
-
-    // Option 2: re-convert to object, but sorted
-    // then Object.fromEntries(sortedObject);
-    // this returns an object of key:values with everything sorted.
-    // {number:freq, number2:freq2, ...} 
-    // The numbers with higher freq will be the firstones
-
-
-
-
 };
 
 const nums = [1,1,1,2,2,3];
