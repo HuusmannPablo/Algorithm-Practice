@@ -14,34 +14,52 @@
 // Output: [0,0,9,0,0]
 
 const productExceptSelf = function(nums) {
+    // Define an empty array
+    const resultsArray = [];
+
     // SOLUTION 1:
     // loop through every item
     // split the array in two
     // multiply everything
     // put the result in a new array
 
-    // const productLeft = numsLeft.reduce((a, b) => a * b, 1);
-    // const productRight = numsRight.reduce((a, b) => a * b, 1);
-
-    // Define an empty array
-    const resultArray = [];
-
-    const numsRight = nums.splice(i + 1); // if you splice at i, that value will be included in the resulting array
-
+    
     // SOLUTION 2:
     // loop through the array
     // remove the i element from the array
     // multiply everything and add toresultArray
     // return the i element to place
     // return resultArray 
+    
+    for(let i = 0; i < nums.length; i++) {
+        const removedNumber = nums.splice(i, 1);
+        const productTotal = nums.reduce((a, b) => a * b, 1);
+        resultsArray.push(productTotal);
+        nums.splice(i, 0, removedNumber);
+    };
+    
+    
+    return resultsArray;
+
+
+    // To multiply all elements in an array:
+// const productLeft = numsLeft.reduce((a, b) => a * b, 1);
+// const productRight = numsRight.reduce((a, b) => a * b, 1);
+
+    // splice example
+// const myArray = [1, 2, 3, 4, 5];
+// const x = myArray.splice(1, 1);
+// myArray values: 1,3,4,5
+// variable x value: 2
+
 
 };
 
 // This splitting function divides the array at the index value
-const splitAt = (index, array) => {
-    const clonedArray = [...array];
-    return [clonedArray.splice(0, index), clonedArray];
-}
+// const splitAt = (index, array) => {
+//     const clonedArray = [...array];
+//     return [clonedArray.splice(0, index), clonedArray];
+// }
 
 
 const nums = [1,2,3,4];
