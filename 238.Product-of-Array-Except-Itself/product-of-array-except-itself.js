@@ -14,8 +14,35 @@
 // Output: [0,0,9,0,0]
 
 const productExceptSelf = function(nums) {
-    
+    // SOLUTION 1:
+    // loop through every item
+    // split the array in two
+    // multiply everything
+    // put the result in a new array
+
+    // const productLeft = numsLeft.reduce((a, b) => a * b, 1);
+    // const productRight = numsRight.reduce((a, b) => a * b, 1);
+
+    // Define an empty array
+    const resultArray = [];
+
+    const numsRight = nums.splice(i + 1); // if you splice at i, that value will be included in the resulting array
+
+    // SOLUTION 2:
+    // loop through the array
+    // remove the i element from the array
+    // multiply everything and add toresultArray
+    // return the i element to place
+    // return resultArray 
+
 };
+
+// This splitting function divides the array at the index value
+const splitAt = (index, array) => {
+    const clonedArray = [...array];
+    return [clonedArray.splice(0, index), clonedArray];
+}
+
 
 const nums = [1,2,3,4];
 const result = productExceptSelf(nums);
