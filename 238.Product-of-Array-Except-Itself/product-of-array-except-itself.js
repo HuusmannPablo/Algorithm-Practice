@@ -13,38 +13,30 @@
 // Input: nums = [-1,1,0,-3,3]
 // Output: [0,0,9,0,0]
 
+
+// SOLUTION 1:
+// Define an empty array resultsArray
+// loop through the nums array
+// remove the i element from the array
+// multiply everything and add to resultArray
+// return the i element to place
+// return resultArray 
+
+// This solution works for small amounts of data in nums array, but it exceeds time complexity on very large arrays.
+
 const productExceptSelf = function(nums) {
-    // Define an empty array
+    
     const resultsArray = [];
 
-    // SOLUTION 1:
-    // loop through every item
-    // split the array in two
-    // multiply everything
-    // put the result in a new array
-
-    
-    // SOLUTION 2:
-    // loop through the array
-    // remove the i element from the array
-    // multiply everything and add toresultArray
-    // return the i element to place
-    // return resultArray 
-    
     for(let i = 0; i < nums.length; i++) {
         const removedNumber = nums.splice(i, 1);
         const productTotal = nums.reduce((a, b) => a * b, 1);
         resultsArray.push(productTotal);
         nums.splice(i, 0, removedNumber);
     };
-    
-    
+
     return resultsArray;
-
-
-    // To multiply all elements in an array:
-// const productLeft = numsLeft.reduce((a, b) => a * b, 1);
-// const productRight = numsRight.reduce((a, b) => a * b, 1);
+};
 
     // splice example
 // const myArray = [1, 2, 3, 4, 5];
@@ -53,15 +45,50 @@ const productExceptSelf = function(nums) {
 // variable x value: 2
 
 
+// SOLUTION 2:
+// I'm reading about prefix and sufix arrays, and how to use them for this example
+
+// On the first pass, iterate through the array and create an array of prefixes, 
+// which give us the product of all left elements for each position
+
+// On the second pass, iterate through the array and create an array of suffixes, 
+// which give us the product of all right elements for each position
+
+// On the third pass, build a result array that contains the product of prefixes[i] * suffixes[i] 
+// for each position, and return this as our answer.
+
+const productExceptSelf2 = function(nums) {
+    const prefixArray = [];
+
+    for(let i = 0; i < nums.length; i++) {
+        if(i === 0) {
+            prefixArray[i] = 1;
+        } else {
+            prefixArray[i] = nums[i - 1] * prefixArray[i - 1];
+        };
+    };
+
+    const sufixArray = [];
+
+    for(let j = nums.length - 1; j >= 0; j--) {
+        if(j === nums.length -1) {
+            sufixArray[j] = 1;
+        } else {
+            sufixArray[j] = nums[j + 1] * sufixArray[j + 1];
+        };
+    };
+
+    const resultArray = [];
+
+    for(let k = 0; k < nums.length; k++) {
+        resultArray[k] = prefixArray[k] * sufixArray[k];
+    };
+
+    return resultArray;
 };
 
-// This splitting function divides the array at the index value
-// const splitAt = (index, array) => {
-//     const clonedArray = [...array];
-//     return [clonedArray.splice(0, index), clonedArray];
-// }
 
-
-const nums = [1,2,3,4];
-const result = productExceptSelf(nums);
-console.log(result);
+const nums = [1,2,3,4,3,2,1];
+const result = productExceptSelf2(nums);
+// const result = productExceptSelf(nums);
+console.log(result); // Expected output: [144, 72, 48, 36, 48, 72, 144]
