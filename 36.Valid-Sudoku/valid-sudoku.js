@@ -34,27 +34,42 @@ const isValidSudoku = function(board) {
     // box 3: 6-8
 
 // SOLUTION 2:
+
+// Part A
 // I should check the rows
     // I can create a Set and put the numbers there, and check that they are not there already
     // keep going if they are not there, return false if thay are
 
+// Part B
 // I should check the columns then
     // I can create a Set and put the numbers there, and check that they are not there already
     // keep going if they are not there, return false if thay are
 
+// Part C
 // I should check the 3x3 boxes
 // Need to figure out how to identify each box
 // and use the same Set procedure as in the ohter two checks
 
+// PART A
     for(let i = 0; i < 9; i++) {
 
-        // create a Set
+        // create a Set for the rows
+        let rowSet = new Set();
+
+        // Loop through every number
         for(let j = 0; j < 9; j++) {
+            
             // if(there is a number && that number is in the set)
+            if(board[i][j] !== '.' && rowSet.has(board[i][j])) {
                 return false
+            }
+
             // else, add the number to the set
-        }
-    }
+            rowSet.add(board[i][j]);
+        };
+    };
+
+// PART B
 
 
 };
