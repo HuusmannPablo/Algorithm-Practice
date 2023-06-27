@@ -50,7 +50,7 @@ const isValidSudoku = function(board) {
 // Need to figure out how to identify each box
 // and use the same Set procedure as in the ohter two checks
 
-// PART A
+// PART A: ROWS
     for(let i = 0; i < 9; i++) {
 
         // create a Set for the rows
@@ -69,7 +69,27 @@ const isValidSudoku = function(board) {
         };
     };
 
-// PART B
+// PART B: COLUMNS (Like rows but changing the order of i and j)
+    for(let j = 0; j < 9; j++) {
+
+        // create a Set for the columns
+        let columnSet = new Set();
+
+        // Loop through every number
+        for(let i = 0; i < 9; i++) {
+            
+            // if(there is a number && that number is in the set)
+            if(board[i][j] !== '.' && columnSet.has(board[i][j])) {
+                return false
+            }
+
+            // else, add the number to the set
+            columnSet.add(board[i][j]);
+        };
+    };
+
+// PART C: 3x3 BOXES
+
 
 
 };
