@@ -58,8 +58,12 @@ const productExceptSelf = function(nums) {
 // for each position, and return this as our answer.
 
 const productExceptSelf2 = function(nums) {
+    
+    // Create an empty prefix array
     const prefixArray = [];
 
+    // Loop through the nums array from left to right, multiplying every element to the left
+    // For the first element, set equal to 1 as there is nothing to the left of it
     for(let i = 0; i < nums.length; i++) {
         if(i === 0) {
             prefixArray[i] = 1;
@@ -68,18 +72,24 @@ const productExceptSelf2 = function(nums) {
         };
     };
 
+
+    // Create an empty sufix array
     const sufixArray = [];
 
+    // Loop through the nums array from last to first, multiplying every element to the right
+    // For the last element, set equal to 1 as there is nothing to the right of it
     for(let j = nums.length - 1; j >= 0; j--) {
-        if(j === nums.length -1) {
+        if(j === nums.length - 1) {
             sufixArray[j] = 1;
         } else {
             sufixArray[j] = nums[j + 1] * sufixArray[j + 1];
         };
     };
 
+    // Create an empty results array
     const resultArray = [];
 
+    // Loop one more time multiplying the two arrays to get the result
     for(let k = 0; k < nums.length; k++) {
         resultArray[k] = prefixArray[k] * sufixArray[k];
     };
