@@ -27,6 +27,22 @@
 // All input times are valid
 
 function timeConversion(s) {
-    // Write your code here
+    // Split the time on :
+    // I'll end up with array[0] = hours, array[1] = minutes, array[2] = seconds + AM/PM
+    let array = s.split(':');
 
+    // If the time is PM and the hours are not 12, add 12 to the hours
+    if (array[2].includes('PM') && array[0] != 12) {
+        array[0] = parseInt(array[0]) + 12;
+
+    // If the time is AM and the hours are 12, set the hours to 00
+    } else if (array[2].includes('AM') && array[0] == 12) {
+        array[0] = '00';
+    }
+
+    // Remove the AM/PM from the seconds
+    array[2] = array[2].slice(0, 2);
+
+    // Return the array joined on :
+    return array.join(':');
 };
