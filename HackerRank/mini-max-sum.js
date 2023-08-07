@@ -28,6 +28,20 @@
 // (The output can be greater than a 32 bit integer.)
 
 function miniMaxSum(arr) {
-    // Write your code here
+    arr.sort((a, b) => a - b);
+    let minSum = 0;
+    let maxSum = 0;
 
+    for (let i = 0; i < arr.length; i++) {
+        if (i < 4) {
+            minSum += arr[i];
+        }
+        if (i > 0) {
+            maxSum += arr[i];
+        }
+    }
+
+    console.log(minSum, maxSum);
+    
+    return;
 };
