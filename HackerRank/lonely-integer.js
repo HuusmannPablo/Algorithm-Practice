@@ -21,8 +21,21 @@
 // It is guaranteed that n is an odd number and that there is one unique element.
 // 0 <= a[i] <= 100, where 0 <= i < n.
 
-function lonelyinteger(a) {
-    // Write your code here
-
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
 };
 
+function lonelyinteger(a) {
+    // Write your code here
+    // create an object {number: count} to count the appearance of each number
+    // loop through the object and return the number with count = 1
+    let counter = {};
+    for (let i = 0; i < a.length; i++) {
+        if (counter[a[i]]) {
+            counter[a[i]]++;
+        } else {
+            counter[a[i]] = 1;
+        }
+    };
+    return getKeyByValue(counter, 1);
+};
