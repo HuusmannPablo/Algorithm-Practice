@@ -52,14 +52,20 @@
 // 0 <= arr[i] < 100
 
 function countingSort(arr) {
-    // Write your code here
-    let frequencyArray = [];
-    for(let j = 0; j < 100; j++) {
-        frequencyArray.push(0);
-    };
+
+    // This was my first attempt to build the array with 100 zeros
+    // let frequencyArray = [];
+    // for(let j = 0; j < 100; j++) {
+    //     frequencyArray.push(0);
+    // };
+
+    // But this line does the same thing, and it's easier to understand:
+    let frequencyArray = new Array(100).fill(0);
+
     for (let i = 0; i < arr.length; i++) {
         let valueInArr = arr[i];
         frequencyArray[valueInArr] += 1;
     };
-    console.log(frequencyArray);
+
+    return frequencyArray;
 };
