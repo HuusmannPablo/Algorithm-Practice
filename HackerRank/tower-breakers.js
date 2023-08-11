@@ -46,6 +46,53 @@
     // 1 <= n, m <= 10^6
 
 function towerBreakers(n, m) {
-    // Write your code here
-    
+
+    // After analyzing the problem, and reading other's peoples opinions, 
+    // I realized all it matters is the value of n and m. 
+    // No strategy is needed to be translated to code as I did below this answer.
+    // If n is even or m is 1, player 2 wins
+    return (n % 2 === 0 || m === 1) ? '2' : '1';
+
+
+    // // My first attempt to create the game mechanics
+    // // Initialize array of towers
+    // let towers = [];
+    // for (let i = 0; i < n; i++) {
+    //     towers.push(m);
+    // };
+    // // Initialize player
+    // let player = 1;
+
+    // // While there are still towers
+    // while (towers.length > 0) {
+
+    //     // Initialize tower index
+    //     let towerIndex = 0;
+    //     // Initialize tower height
+    //     let towerHeight = towers[0];
+    //     // Iterate through towers
+    //     for (let i = 0; i < towers.length; i++) {
+    //         // If the tower is shorter than the current tower height
+    //         if (towers[i] < towerHeight) {
+    //             // Update tower index
+    //             towerIndex = i;
+    //             // Update tower height
+    //             towerHeight = towers[i];
+    //         };
+    //     };
+    //     // If the tower height is 1
+    //     if (towerHeight === 1) {
+    //         // Remove the tower
+    //         towers.splice(towerIndex, 1);
+    //     } else {
+    //         // Remove pieces from the tower
+    //         towers[towerIndex] -= 1;
+    //     };
+
+    //     // Switch player
+    //     player = player === 1 ? 2 : 1;
+    // }
+    // // Return the winner
+    // return player;
+
 };
