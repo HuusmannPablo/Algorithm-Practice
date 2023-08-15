@@ -17,7 +17,7 @@
 function gridChallenge(grid: string[]): string {
 
     // Initialize newGrid
-    let newGrid = [];
+    let newGrid: string[] = new Array();
 
     // Sort each row of grid
     for (let i = 0; i < grid.length; i++) {
