@@ -15,22 +15,30 @@
 // They cannot be moved to a different row.
 
 function gridChallenge(grid: string[]): string {
-    // Write your code here
-    // Loop(map) through the array
-        // sort each element (row)
-    // once sorted I will need to loop using index
-        // for index 0, ask if the next letter is "bigger" or equal thatn the previous one
-            // true, move on to the next indexand at the end return YES
-            // false, return NO
+
+    // Initialize newGrid
+    let newGrid = [];
+
+    // Sort each row of grid
     for (let i = 0; i < grid.length; i++) {
-        grid[i].split('').sort((a, b) => a - b).join('');
+        newGrid.push(grid[i].split('').sort());
+    };
+    console.log(newGrid);
+
+    // Check if each column is in ascending alphabetical order
+    for (let i = 0; i < newGrid[0].length; i++) {        
+        for(let j = 0; j < newGrid.length - 1; j++) {
+
+            // If the current letter is in alphabetical order, continue
+            if(newGrid[j][i] <= newGrid[j + 1][i]) {
+                continue
+            // Otherwise, return 'NO'
+            } else {
+                return 'NO'
+            };
+        };
     };
 
-    for (let i = 0; i < grid.length; i++) {
-        for(let j = 0; j < grid.length; j++) {
-            
-        }
-    }
-
-
-}
+    // If all the columns and rows are in ascending alphabetical order, return 'YES'
+    return 'YES'
+};
