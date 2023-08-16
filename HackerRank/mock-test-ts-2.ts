@@ -24,27 +24,32 @@
 // We can start the tour from the second petrol pump.
 
 function truckTour(petrolpumps: number[][]): number {
-    // Write your code here
-    // the first integer should be grater than the second integer of the next array
-    // If that is the case, we have enough petrol to move to that pump
-    // I will initialize a petrol variable to keep track of the petrol
-    // I will initialize a distance variable to keep track of the distance
-    
+
+    // Initializing the variables: amount of petrol available in the tank, 
+    // distance to the next pump, start point
     let petrol: number = 0;
     let distance: number = 0;
     let start: number = 0;
-
-    for (let i = 0; i < petrolpumps.length; i++) {
+    
+    // for every pump available
+    for(let i: number = 0; i < petrolpumps.length; i++) {
+        
+        // Add the petrol available in the pump to the tank
         petrol += petrolpumps[i][0];
+        // Add the distance to the next pump to the total distance
         distance += petrolpumps[i][1];
-
-        if (petrol < distance) {
+        
+        // If I don't have enough petrol to get to the next pump
+        if(petrol < distance) {
+            
+            // Then I move the start to the next pump
             start = i + 1;
+            // And I restart the tank and distance
             petrol = 0;
             distance = 0;
         };
     };
-
+    
+    // After the loop I will have the best starting point to get to the full circle
     return start;
-
 };
