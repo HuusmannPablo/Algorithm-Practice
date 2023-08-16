@@ -28,6 +28,52 @@
     // if someone has bribed more than 2 people.
 
 function minimumBribes(q: number[]): void {
-    // Write your code here
 
+    // SOLUTION 1: problem is the logic of the else statement. 
+    // let bribesCount: number = 0;
+    // for(let i = 0; i < q.length; i++) {
+    //     if(q[i] - (i+1) > 2) {
+    //         console.log("Too chaotic")
+    //         return
+    //     } else {
+    //         bribesCount += 1;
+    //     }
+    // }
+    // let totalBribes = Math.floor(bribesCount/2);
+    // console.log(totalBribes);
+    // return
+
+    // SOLUTION 2:
+
+    // Initialize the variables 
+    let bribeCount: number = 0; 
+    let isChaos: boolean = false;
+
+    // Check if a number is ahead for more than two positions
+    for(let i: number = 0; i < q.length; i++){
+        if((q[i] - (i + 1) > 2)){
+
+            // If yes, then chaos
+            isChaos = true;
+            console.log("Too chaotic");
+            break;
+        };  
+    };
+
+    // If no, then bubble sort adding 1 to counter for each swap
+    // "reverse engineering" the bribes
+    for(let k: number = 0; k < q.length; k++){
+        for(let j: number = 0; j < q.length; j++){
+            if(q[j] > q[j + 1]){
+                bribeCount++;
+                //Swap using destructuring
+                [q[j], q[j + 1]] = [q[j + 1], q[j]];
+            };
+        };
+    };
+
+    // If no chaos, then print the number of bribes
+    if(!isChaos){
+        console.log(bribeCount);
+    };
 };
