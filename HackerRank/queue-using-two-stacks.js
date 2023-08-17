@@ -22,5 +22,12 @@
 
 function processData(input) {
     //Enter your code here
+    // create a queue = {}
+    // loop through the input
+    // if the input starts with:
+        // 1 x: Enqueue element x into the end of the queue.
+        // 2: Dequeue the element at the front of the queue.
+        // 3: Print the element at the front of the queue.
+    // return the queue
     
 } 
