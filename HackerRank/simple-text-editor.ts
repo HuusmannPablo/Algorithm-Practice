@@ -17,5 +17,59 @@
 
 function processData(input: string[]) {
     //Enter your code here
-    
-} 
+    // make a copy of S in case I need to revert to last S
+    // 1 = append or concat string
+    // 2 = delete, split string at k character and get rid of second part
+    // 3 = print, console.log(S[k-1])
+    // 4 = undo, S = Sprior
+
+    let S = '';
+    let Sprior = '';
+    let Q = parseInt(input[0]);
+
+    for(let i = 1; i <= Q; i++){
+        console.log(input[i]);
+        if(input[i][0] === '1'){
+            Sprior = S;
+            S = S.concat(input[i].slice(2));
+        } else if(input[i][0] === '2'){
+            Sprior = S;
+            S = S.slice(0, S.length - parseInt(input[i].slice(2)));
+        } else if(input[i][0] === '3'){
+            console.log(S[parseInt(input[i].slice(2)) - 1]);
+        } else if(input[i][0] === '4'){
+            S = Sprior;
+        };
+    };
+
+
+        // let [operationType, k] = input[i].split(' ');
+        // if (operationType === '1') {
+        //     Sprior = S;
+        //     S = S.concat(k);
+        // } else if (operationType === '2') {
+        //     Sprior = S;
+        //     S = S.slice(0, S.length - parseInt(k));
+        // } else if (operationType === '3') {
+        //     console.log(S[parseInt(k) - 1]);
+        // } else if (operationType === '4') {
+        //     S = Sprior;
+        // };
+    };
+    // let i = 1;
+    // while (i <= Q) {
+    //     let [t, k] = input[i].split(' ');
+    //     if (t === '1') {
+    //         Sprior = S;
+    //         S = S.concat(k);
+    //     } else if (t === '2') {
+    //         Sprior = S;
+    //         S = S.slice(0, S.length - parseInt(k));
+    //     } else if (t === '3') {
+    //         console.log(S[parseInt(k) - 1]);
+    //     } else if (t === '4') {
+    //         S = Sprior;
+    //     }
+    //     i++;
+    // };
+}; 
