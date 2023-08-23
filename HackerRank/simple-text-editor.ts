@@ -15,7 +15,7 @@
 // If the operation requires an argument, t is followed by its space-separated argument.
 // For example, if t = 1 and W = 'abcd', line i will be 1 abcd.
 
-function processData(input: string[]) {
+function processData(input: string) {
     //Enter your code here
     // make a copy of S in case I need to revert to last S
     // 1 = append or concat string
@@ -23,22 +23,34 @@ function processData(input: string[]) {
     // 3 = print, console.log(S[k-1])
     // 4 = undo, S = Sprior
 
-    let S = '';
-    let Sprior = '';
-    let Q = parseInt(input[0]);
+    // create a stack of S strings. I can add to the stack when I append or delete
+    // and add 1 to a counter. When I undo, I can pop the stack and subtract 1 from the counter
+    // this needs to solve the issue of getting consecutive undo commands
+    
 
-    for(let i = 1; i <= Q; i++){
-        console.log(input[i]);
-        if(input[i][0] === '1'){
-            Sprior = S;
-            S = S.concat(input[i].slice(2));
-        } else if(input[i][0] === '2'){
-            Sprior = S;
-            S = S.slice(0, S.length - parseInt(input[i].slice(2)));
-        } else if(input[i][0] === '3'){
-            console.log(S[parseInt(input[i].slice(2)) - 1]);
-        } else if(input[i][0] === '4'){
-            S = Sprior;
+    let S = '';
+    input = input.split('\n');
+    let Q = parseInt(input[0]);
+    let stack = [S];
+    let index = 0;
+
+    for (let i = 1; i <= Q; i++) {
+        if (input[i][0] === '1') {
+          S = S.concat(input[i].slice(2));
+          stack.push(S);
+          index++;
+        } else if (input[i][0] === '2') {
+          S = S.slice(0, S.length - parseInt(input[i].slice(2)));
+          stack.push(S);
+          index++;
+        } else if (input[i][0] === '3') {
+          console.log(S[parseInt(input[i].slice(2)) - 1]);
+        } else if (input[i][0] === '4') {
+          if (index > 0) {
+            stack.pop();
+            index--;
+            S = stack[index];
+          };
         };
     };
 
